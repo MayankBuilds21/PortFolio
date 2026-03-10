@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Mayank — Full-Stack Developer crafting high-performance web experiences with cutting-edge technology." />
+  <meta name="theme-color" content="#0a0a1a" />
+  <title>Mayank | Developer Portfolio</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/sections.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+
+  <!-- No-JS fallback -->
+  <noscript>
+    <style>
+      .anim { opacity: 1 !important; transform: none !important; }
+      .loader { display: none !important; }
+      .cursor-dot, .cursor-ring { display: none !important; }
+      #webgl-bg { background: linear-gradient(180deg, #050510 0%, #0a0a2e 100%) !important; }
+    </style>
+  </noscript>
+
+  <!-- CDN: Three.js + GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+</head>
+<body>
+
+  <!-- ======== THREE.JS CANVAS ======== -->
+  <canvas id="webgl-bg"></canvas>
+
+  <!-- ======== CUSTOM CURSOR ======== -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- ======== PAGE LOADER ======== -->
+  <div class="loader" id="loader">
+    <div class="loader-inner">
+      <div class="loader-logo">&lt;M/&gt;</div>
+      <div class="loader-bar">
+        <div class="loader-progress" id="loaderProgress"></div>
+      </div>
+      <p class="loader-text">Initializing experience<span class="loader-dots">...</span></p>
+    </div>
+  </div>
+
+  <!-- ======== NAVBAR ======== -->
+  <nav class="navbar" id="navbar">
+    <a href="#home" class="nav-logo">
+      <span class="bracket">&lt;</span>Mayank<span class="bracket">/&gt;</span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#home" class="nav-link active">Home</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#skills" class="nav-link">Skills</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </div>
+    <a href="#contact" class="btn-glow btn-sm nav-cta-desktop">Let's Talk</a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ======== MOBILE MENU ======== -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#home" class="mobile-link">Home</a>
+    <a href="#about" class="mobile-link">About</a>
+    <a href="#skills" class="mobile-link">Skills</a>
+    <a href="#projects" class="mobile-link">Projects</a>
+    <a href="#contact" class="mobile-link">Contact</a>
+  </div>
+
+  <!-- ======== MAIN CONTENT ======== -->
+  <main>
+
+    <!-- ============================= HERO ============================= -->
+    <section id="home" class="section hero-section">
+      <div class="container hero-grid">
+
+        <!-- Left Column -->
+        <div class="hero-left">
+          <div class="hero-badge anim" data-anim="fade-up" data-delay="0.3">
+            <span class="badge-pulse"></span>
+            <span>Available for opportunities</span>
+          </div>
+
+          <h1 class="hero-title">
+            <span class="anim" data-anim="fade-up" data-delay="0.4">Hi, I'm</span>
+            <span class="anim gradient-text" data-anim="fade-up" data-delay="0.5">Mayank</span>
+            <span class="anim" data-anim="fade-up" data-delay="0.6">I craft experiences</span>
+            <span class="anim" data-anim="fade-up" data-delay="0.7">
+              for the
+              <span class="typewriter-wrap">
+                <span class="gradient-text-alt" id="typewriter">web.</span>
+                <span class="tw-cursor">|</span>
+              </span>
+            </span>
+          </h1>
+
+          <p class="hero-sub anim" data-anim="fade-up" data-delay="0.8">
+            Full-stack developer specializing in building exceptional digital
+            experiences. I turn complex problems into elegant, scalable solutions
+            with modern technologies and pixel-perfect design.
+          </p>
+
+          <div class="hero-btns anim" data-anim="fade-up" data-delay="0.9">
+            <a href="#projects" class="btn-glow btn-lg">
+              View My Work
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 17L17 7M17 7H7M17 7V17"/>
+              </svg>
+            </a>
+            <a href="#contact" class="btn-outline btn-lg">Get In Touch</a>
+          </div>
+
+          <div class="hero-stats anim" data-anim="fade-up" data-delay="1.0">
+            <div class="stat">
+              <span class="stat-num" data-target="50">0</span><span class="stat-plus">+</span>
+              <span class="stat-label">Projects Built</span>
+            </div>
+            <div class="stat-sep"></div>
+            <div class="stat">
+              <span class="stat-num" data-target="30">0</span><span class="stat-plus">+</span>
+              <span class="stat-label">Happy Clients</span>
+            </div>
+            <div class="stat-sep"></div>
+            <div class="stat">
+              <span class="stat-num" data-target="3">0</span><span class="stat-plus">+</span>
+              <span class="stat-label">Years Exp.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Terminal Card -->
+        <div class="hero-right anim" data-anim="fade-left" data-delay="0.6">
+          <div class="glass-card hero-card">
+            <div class="card-glow"></div>
+            <div class="terminal">
+              <div class="terminal-bar">
+                <span class="t-dot red"></span>
+                <span class="t-dot yellow"></span>
+                <span class="t-dot green"></span>
+                <span class="t-title">mayank@dev ~ %</span>
+              </div>
+              <div class="terminal-body">
+                <p><span class="t-prompt">$</span> <span class="t-cmd">cat profile.json</span></p>
+                <pre class="t-output">{
+  <span class="t-key">"name"</span>: <span class="t-str">"Mayank Jha"</span>,
+  <span class="t-key">"role"</span>: <span class="t-str">"Full-Stack Developer"</span>,
+  <span class="t-key">"location"</span>: <span class="t-str">"India 🇮🇳"</span>,
+  <span class="t-key">"education"</span>: <span class="t-str">"B.Tech Computer Science"</span>,
+  <span class="t-key">"skills"</span>: [
+    <span class="t-str">"React"</span>, <span class="t-str">"Next.js"</span>,
+    <span class="t-str">"Node.js"</span>, <span class="t-str">"Python"</span>,
+    <span class="t-str">"Three.js"</span>, <span class="t-str">"TypeScript"</span>,
+    <span class="t-str">"MongoDB"</span>, <span class="t-str">"PostgreSQL"</span>
+  ],
+  <span class="t-key">"interests"</span>: [
+    <span class="t-str">"Open Source"</span>,
+    <span class="t-str">"3D Web"</span>,
+    <span class="t-str">"System Design"</span>
+  ],
+  <span class="t-key">"currently"</span>: <span class="t-str">"Building cool stuff"</span>,
+  <span class="t-key">"hireable"</span>: <span class="t-bool">true</span>,
+  <span class="t-key">"coffee_count"</span>: <span class="t-bool">9999</span>
+}</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div class="scroll-hint">
+        <span>Scroll</span>
+        <div class="scroll-line"><div class="scroll-dot"></div></div>
+      </div>
+    </section>
+
+    <!-- ============================= ABOUT ============================= -->
+    <section id="about" class="section about-section">
+      <div class="container">
+        <div class="section-header anim" data-anim="fade-up">
+          <span class="section-num">01</span>
+          <h2 class="section-title">About <span class="gradient-text">Me</span></h2>
+          <div class="title-line"></div>
+        </div>
+
+        <div class="about-grid">
+          <!-- Avatar Card -->
+          <div class="about-visual anim" data-anim="fade-right">
+            <div class="glass-card about-card">
+              <div class="about-avatar">
+                <div class="avatar-ring">
+                  <div class="avatar-inner">M</div>
+                </div>
+                <div class="avatar-orbit">
+                  <span class="orbit-dot" style="--i:0;--clr:#7c3aed"></span>
+                  <span class="orbit-dot" style="--i:1;--clr:#06b6d4"></span>
+                  <span class="orbit-dot" style="--i:2;--clr:#ec4899"></span>
+                </div>
+              </div>
+              <div class="about-chips">
+                <span class="chip">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  India
+                </span>
+                <span class="chip">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                  Full-Stack Dev
+                </span>
+                <span class="chip">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                  B.Tech CS
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Text Content -->
+          <div class="about-text anim" data-anim="fade-left">
+            <h3>
+              A passionate developer who loves building
+              <span class="gradient-text">impactful</span> digital products.
+            </h3>
+            <p>
+              Hey! I'm Mayank, a full-stack developer based in India with a deep
+              love for crafting web applications that are not just functional, but
+              also beautiful and blazing fast. My journey into tech started when I
+              built my first website at 15, and I've been hooked ever since.
+            </p>
+            <p>
+              I specialize in the React/Next.js ecosystem on the frontend and
+              Node.js/Python on the backend. I've built everything from real-time
+              chat applications and AI-powered dashboards to e-commerce platforms
+              handling thousands of daily transactions. When I'm not pushing
+              commits, you'll find me exploring WebGL, contributing to open-source
+              projects, or writing technical blogs.
+            </p>
+            <div class="about-highlights">
+              <div class="highlight glass-card-sm">
+                <div class="highlight-icon purple">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                </div>
+                <div><strong>Clean Architecture</strong><span>SOLID principles, modular design</span></div>
+              </div>
+              <div class="highlight glass-card-sm">
+                <div class="highlight-icon cyan">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                </div>
+                <div><strong>Performance First</strong><span>Sub-second loads, 90+ Lighthouse</span></div>
+              </div>
+              <div class="highlight glass-card-sm">
+                <div class="highlight-icon pink">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                </div>
+                <div><strong>Always Learning</strong><span>WebGPU, Rust, System Design</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================= SKILLS ============================= -->
+    <section id="skills" class="section skills-section">
+      <div class="container">
+        <div class="section-header anim" data-anim="fade-up">
+          <span class="section-num">02</span>
+          <h2 class="section-title">Tech <span class="gradient-text">Stack</span></h2>
+          <div class="title-line"></div>
+        </div>
+
+        <div class="skills-categories">
+
+          <!-- Frontend -->
+          <div class="skill-cat anim" data-anim="fade-up" data-delay="0.1">
+            <div class="glass-card skill-card">
+              <div class="skill-card-header">
+                <div class="skill-icon-wrap purple">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/><line x1="12" y1="22" x2="12" y2="15.5"/><polyline points="22 8.5 12 15.5 2 8.5"/></svg>
+                </div>
+                <h3>Frontend</h3>
+              </div>
+              <div class="skill-tags">
+                <span class="skill-tag">HTML5</span>
+                <span class="skill-tag">CSS3</span>
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">React.js</span>
+                <span class="skill-tag">Next.js</span>
+                <span class="skill-tag">TypeScript</span>
+                <span class="skill-tag">Three.js</span>
+                <span class="skill-tag">Tailwind CSS</span>
+                <span class="skill-tag">GSAP</span>
+                <span class="skill-tag">Framer Motion</span>
+                <span class="skill-tag">Redux</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Backend -->
+          <div class="skill-cat anim" data-anim="fade-up" data-delay="0.2">
+            <div class="glass-card skill-card">
+              <div class="skill-card-header">
+                <div class="skill-icon-wrap cyan">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+                </div>
+                <h3>Backend</h3>
+              </div>
+              <div class="skill-tags">
+                <span class="skill-tag">Node.js</span>
+                <span class="skill-tag">Express.js</span>
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">Django</span>
+                <span class="skill-tag">FastAPI</span>
+                <span class="skill-tag">REST APIs</span>
+                <span class="skill-tag">GraphQL</span>
+                <span class="skill-tag">WebSockets</span>
+                <span class="skill-tag">JWT Auth</span>
+                <span class="skill-tag">OAuth 2.0</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Database & Cloud -->
+          <div class="skill-cat anim" data-anim="fade-up" data-delay="0.3">
+            <div class="glass-card skill-card">
+              <div class="skill-card-header">
+                <div class="skill-icon-wrap pink">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+                </div>
+                <h3>Database &amp; Cloud</h3>
+              </div>
+              <div class="skill-tags">
+                <span class="skill-tag">MongoDB</span>
+                <span class="skill-tag">PostgreSQL</span>
+                <span class="skill-tag">MySQL</span>
+                <span class="skill-tag">Redis</span>
+                <span class="skill-tag">Firebase</span>
+                <span class="skill-tag">Supabase</span>
+                <span class="skill-tag">Prisma ORM</span>
+                <span class="skill-tag">AWS S3</span>
+                <span class="skill-tag">Cloudflare</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- DevOps & Tools -->
+          <div class="skill-cat anim" data-anim="fade-up" data-delay="0.4">
+            <div class="glass-card skill-card">
+              <div class="skill-card-header">
+                <div class="skill-icon-wrap green">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                </div>
+                <h3>DevOps &amp; Tools</h3>
+              </div>
+              <div class="skill-tags">
+                <span class="skill-tag">Git &amp; GitHub</span>
+                <span class="skill-tag">Docker</span>
+                <span class="skill-tag">Linux</span>
+                <span class="skill-tag">Nginx</span>
+                <span class="skill-tag">CI/CD</span>
+                <span class="skill-tag">Vercel</span>
+                <span class="skill-tag">Netlify</span>
+                <span class="skill-tag">Figma</span>
+                <span class="skill-tag">Postman</span>
+                <span class="skill-tag">VS Code</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================= PROJECTS ============================= -->
+    <section id="projects" class="section projects-section">
+      <div class="container">
+        <div class="section-header anim" data-anim="fade-up">
+          <span class="section-num">03</span>
+          <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
+          <div class="title-line"></div>
+        </div>
+
+        <div class="projects-grid">
+
+          <!-- Project 1: AI Dashboard -->
+          <div class="project-card glass-card anim" data-anim="fade-up" data-delay="0.1">
+            <div class="project-img">
+              <div class="project-placeholder purple-grad">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+              </div>
+              <div class="project-overlay">
+                <a href="https://ai-dashboard-demo.vercel.app" class="proj-link" target="_blank" rel="noopener" aria-label="Live Demo">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </a>
+                <a href="https://github.com/MayankBuilds21/ai-dashboard" class="proj-link" target="_blank" rel="noopener" aria-label="Source Code">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                </a>
+              </div>
+            </div>
+            <div class="project-info">
+              <h3>NeuroBoard — AI Analytics Dashboard</h3>
+              <p>Real-time analytics platform powered by TensorFlow.js with interactive D3 visualizations, predictive trend analysis, and automated report generation. Handles 10K+ data points with sub-200ms render times.</p>
+              <div class="project-tags">
+                <span>React</span><span>Python</span><span>TensorFlow</span><span>D3.js</span><span>FastAPI</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2: E-Commerce -->
+          <div class="project-card glass-card anim" data-anim="fade-up" data-delay="0.2">
+            <div class="project-img">
+              <div class="project-placeholder cyan-grad">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+              </div>
+              <div class="project-overlay">
+                <a href="https://shopnova-demo.vercel.app" class="proj-link" target="_blank" rel="noopener" aria-label="Live Demo">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </a>
+                <a href="https://github.com/MayankBuilds21/shopnova" class="proj-link" target="_blank" rel="noopener" aria-label="Source Code">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                </a>
+              </div>
+            </div>
+            <div class="project-info">
+              <h3>ShopNova — E-Commerce Platform</h3>
+              <p>Full-featured online marketplace with Stripe payment integration, real-time inventory management, admin analytics dashboard, and an order tracking system. Supports 5K+ SKUs with optimistic UI updates.</p>
+              <div class="project-tags">
+                <span>Next.js</span><span>Node.js</span><span>MongoDB</span><span>Stripe</span><span>Redis</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3: Chat App -->
+          <div class="project-card glass-card anim" data-anim="fade-up" data-delay="0.3">
+            <div class="project-img">
+              <div class="project-placeholder pink-grad">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              </div>
+              <div class="project-overlay">
+                <a href="https://chatsync-demo.vercel.app" class="proj-link" target="_blank" rel="noopener" aria-label="Live Demo">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </a>
+                <a href="https://github.com/MayankBuilds21/chatsync" class="proj-link" target="_blank" rel="noopener" aria-label="Source Code">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                </a>
+              </div>
+            </div>
+            <div class="project-info">
+              <h3>ChatSync — Real-Time Messenger</h3>
+              <p>End-to-end encrypted messaging app with WebRTC video/voice calls, file sharing up to 100MB, group channels with roles, typing indicators, read receipts, and online presence detection.</p>
+              <div class="project-tags">
+                <span>React</span><span>Socket.io</span><span>WebRTC</span><span>Redis</span><span>PostgreSQL</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 4: DevOps Monitor -->
+          <div class="project-card glass-card anim" data-anim="fade-up" data-delay="0.4">
+            <div class="project-img">
+              <div class="project-placeholder green-grad">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              </div>
+              <div class="project-overlay">
+                <a href="https://infrawatch-demo.vercel.app" class="proj-link" target="_blank" rel="noopener" aria-label="Live Demo">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </a>
+                <a href="https://github.com/MayankBuilds21/infrawatch" class="proj-link" target="_blank" rel="noopener" aria-label="Source Code">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                </a>
+              </div>
+            </div>
+            <div class="project-info">
+              <h3>InfraWatch — DevOps Monitor</h3>
+              <p>Infrastructure monitoring toolkit with real-time CPU/RAM/network metrics, customizable alert thresholds via Slack/Email, log aggregation with search, and one-click deployment rollbacks.</p>
+              <div class="project-tags">
+                <span>Go</span><span>Docker</span><span>Grafana</span><span>AWS</span><span>WebSockets</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================= CONTACT ============================= -->
+    <section id="contact" class="section contact-section">
+      <div class="container">
+        <div class="section-header anim" data-anim="fade-up">
+          <span class="section-num">04</span>
+          <h2 class="section-title">Get In <span class="gradient-text">Touch</span></h2>
+          <div class="title-line"></div>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Info Side -->
+          <div class="contact-info anim" data-anim="fade-right">
+            <h3>Let's build something amazing together</h3>
+            <p>
+              Whether you have a project idea, need a developer for your team, or
+              just want to say hi — my inbox is always open. I typically respond
+              within 24 hours. Let's turn your vision into reality!
+            </p>
+            <div class="contact-links">
+              <a href="mailto:mayankbuilds21@gmail.com" class="contact-item glass-card-sm">
+                <div class="contact-icon purple">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </div>
+                <div>
+                  <strong>Email</strong>
+                  <span>mayankbuilds21@gmail.com</span>
+                </div>
+              </a>
+              <a href="https://github.com/MayankBuilds21" target="_blank" rel="noopener" class="contact-item glass-card-sm">
+                <div class="contact-icon cyan">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                </div>
+                <div>
+                  <strong>GitHub</strong>
+                  <span>@MayankBuilds21</span>
+                </div>
+              </a>
+              <a href="https://www.linkedin.com/in/mayank-jha-5232bb27a" target="_blank" rel="noopener" class="contact-item glass-card-sm">
+                <div class="contact-icon pink">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                </div>
+                <div>
+                  <strong>LinkedIn</strong>
+                  <span>Mayank Jha</span>
+                </div>
+              </a>
+              <a href="https://twitter.com/MayankBuilds21" target="_blank" rel="noopener" class="contact-item glass-card-sm">
+                <div class="contact-icon purple">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+                </div>
+                <div>
+                  <strong>Twitter / X</strong>
+                  <span>@MayankBuilds21</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Form Side -->
+          <div class="contact-form-wrap anim" data-anim="fade-left">
+            <form class="glass-card contact-form" id="contactForm">
+              <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" placeholder="John Doe" autocomplete="name" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Your Email</label>
+                <input type="email" id="email" name="email" placeholder="john@example.com" autocomplete="email" required />
+              </div>
+              <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" placeholder="Project Collaboration" />
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" placeholder="Hey Mayank! I'd love to discuss a project idea..." required></textarea>
+              </div>
+              <button type="submit" class="btn-glow btn-lg btn-full">
+                Send Message
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======== FOOTER ======== -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>
+        &copy; 2026 Mayank Jha. Designed &amp; built from scratch with
+        <span class="gradient-text">&hearts;</span> and way too much coffee.
+      </p>
+      <div class="footer-links">
+        <a href="https://github.com/MayankBuilds21" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/mayank-jha-5232bb27a" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="https://twitter.com/MayankBuilds21" target="_blank" rel="noopener" aria-label="Twitter">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ======== SCRIPTS ======== -->
+  <script src="js/three-bg.js" defer></script>
+  <script src="js/cursor.js" defer></script>
+  <script src="js/typewriter.js" defer></script>
+  <script src="js/animations.js" defer></script>
+  <script src="js/main.js" defer></script>
+
+</body>
+</html>

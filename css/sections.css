@@ -1,0 +1,433 @@
+/* ================================================================
+   SECTIONS.CSS — Section-Specific Layouts & Grids
+   Midnight Tech Portfolio | Mayank
+   ================================================================ */
+
+
+/* ──────────────────────────────────────────────────────────────────
+   HERO SECTION
+   ────────────────────────────────────────────────────────────────── */
+.hero-section {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Subtle radial glow behind hero */
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  height: 900px;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    rgba(124, 58, 237, 0.1) 0%,
+    rgba(124, 58, 237, 0.03) 40%,
+    transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-container {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: var(--space-4xl);
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-xl);
+}
+
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hero-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1000px;
+}
+
+.hero-card {
+  width: 100%;
+  max-width: 440px;
+  animation: float 6s ease-in-out infinite;
+}
+
+
+/* ──────────────────────────────────────────────────────────────────
+   ABOUT SECTION
+   ────────────────────────────────────────────────────────────────── */
+.about-section {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative purple accent orb */
+.about-section::before {
+  content: '';
+  position: absolute;
+  top: 15%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    rgba(124, 58, 237, 0.06) 0%,
+    transparent 70%);
+  pointer-events: none;
+}
+
+/* Decorative cyan accent orb */
+.about-section::after {
+  content: '';
+  position: absolute;
+  bottom: 10%;
+  left: -8%;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    rgba(6, 182, 212, 0.05) 0%,
+    transparent 70%);
+  pointer-events: none;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: var(--space-4xl);
+  align-items: start;
+}
+
+/* ── Avatar Card ── */
+.about-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-card {
+  padding: var(--space-2xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xl);
+  text-align: center;
+  width: 100%;
+  max-width: 360px;
+}
+
+.about-avatar {
+  position: relative;
+  width: 160px;
+  height: 160px;
+}
+
+.avatar-ring {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  padding: 4px;
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+.avatar-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--bg-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fs-4xl);
+  font-weight: var(--fw-black);
+  color: var(--text-white);
+  background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+}
+
+/* Orbiting Dots */
+.avatar-orbit {
+  position: absolute;
+  inset: -12px;
+  animation: rotate 10s linear infinite;
+}
+
+.orbit-dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--clr);
+  box-shadow: 0 0 12px var(--clr);
+}
+.orbit-dot:nth-child(1) { top: 0;   left: 50%; transform: translateX(-50%); }
+.orbit-dot:nth-child(2) { bottom: 8%; right: 2%; }
+.orbit-dot:nth-child(3) { bottom: 8%; left: 2%; }
+
+.about-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-sm);
+}
+
+/* ── About Text ── */
+.about-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.about-text h3 {
+  font-size: var(--fs-2xl);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-snug);
+}
+
+.about-text p {
+  font-size: var(--fs-base);
+  color: var(--text-secondary);
+  line-height: var(--lh-relaxed);
+}
+
+/* ── Highlight Cards ── */
+.about-highlights {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+}
+
+.highlight {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+  transition: transform var(--duration-normal) var(--ease-spring);
+}
+.highlight:hover {
+  transform: translateX(6px);
+}
+
+.highlight-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-lg);
+  flex-shrink: 0;
+}
+.highlight-icon.purple {
+  background: rgba(124, 58, 237, 0.12);
+  color: var(--purple-400);
+}
+.highlight-icon.cyan {
+  background: rgba(6, 182, 212, 0.12);
+  color: var(--cyan-400);
+}
+.highlight-icon.pink {
+  background: rgba(236, 72, 153, 0.12);
+  color: var(--pink-400);
+}
+
+.highlight div:last-child {
+  display: flex;
+  flex-direction: column;
+}
+.highlight strong {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--text-white);
+}
+.highlight span {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+
+
+/* ──────────────────────────────────────────────────────────────────
+   SKILLS SECTION
+   ────────────────────────────────────────────────────────────────── */
+.skills-section {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background decoration */
+.skills-section::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    rgba(124, 58, 237, 0.05) 0%,
+    transparent 60%);
+  pointer-events: none;
+}
+
+.skills-categories {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-xl);
+}
+
+.skill-cat {
+  /* Container for animation wrapper */
+}
+
+
+/* ─────────────────────────────────────────────────���────────────────
+   PROJECTS SECTION
+   ────────────────────────────────────────────────────────────────── */
+.projects-section {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative orb */
+.projects-section::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: -5%;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    rgba(236, 72, 153, 0.05) 0%,
+    transparent 65%);
+  pointer-events: none;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-xl);
+}
+
+
+/* ──────────────────────────────────────────────────────────────────
+   CONTACT SECTION
+   ────────────────────────────────────────────────────────────────── */
+.contact-section {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative glow */
+.contact-section::before {
+  content: '';
+  position: absolute;
+  top: 20%;
+  left: -10%;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    rgba(124, 58, 237, 0.06) 0%,
+    transparent 70%);
+  pointer-events: none;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4xl);
+  align-items: start;
+}
+
+/* ── Contact Info Side ── */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.contact-info h3 {
+  font-size: var(--fs-2xl);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-snug);
+}
+
+.contact-info > p {
+  font-size: var(--fs-base);
+  color: var(--text-secondary);
+  line-height: var(--lh-relaxed);
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+}
+
+/* ── Contact Form Side ── */
+.contact-form-wrap {
+  width: 100%;
+}
+
+
+/* ──────────────────────────────────────────────────────────────────
+   SECTION DIVIDER ACCENTS
+   Subtle horizontal glow lines between sections
+   ────────────────────────────────────────────────────────────────── */
+.about-section::after,
+.skills-section::after,
+.projects-section::after {
+  /* Overriding only the about after — adding dividers for skills/projects */
+}
+
+.skills-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(124, 58, 237, 0.3),
+    transparent);
+  pointer-events: none;
+}
+
+.projects-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(6, 182, 212, 0.3),
+    transparent);
+  pointer-events: none;
+}
