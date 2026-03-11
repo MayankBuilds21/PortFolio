@@ -1,5 +1,5 @@
 /* ================================================================
-   RESPONSIVE.CSS — Breakpoints & Mobile Adaptations
+   RESPONSIVE.CSS — Breakpoints & Mobile Adaptations (Enhanced)
    Midnight Tech Portfolio | Mayank
    ================================================================ */
 
@@ -9,7 +9,6 @@
    ────────────────────────────────────────────────────────────────── */
 @media (max-width: 1024px) {
 
-  /* ── Typography Scale Down ── */
   :root {
     --fs-5xl: 3rem;
     --fs-4xl: 2.5rem;
@@ -17,7 +16,6 @@
     --fs-2xl: 1.75rem;
   }
 
-  /* ── Navbar ── */
   .nav-links {
     display: none;
   }
@@ -28,7 +26,6 @@
     display: flex;
   }
 
-  /* ── Hero ── */
   .hero-grid {
     grid-template-columns: 1fr;
     gap: var(--space-3xl);
@@ -54,7 +51,6 @@
     max-width: 480px;
   }
 
-  /* ── About ── */
   .about-grid {
     grid-template-columns: 1fr;
     gap: var(--space-3xl);
@@ -67,19 +63,16 @@
     margin: 0 auto;
   }
 
-  /* ── Skills ── */
   .skills-categories {
     grid-template-columns: repeat(2, 1fr);
     gap: var(--space-lg);
   }
 
-  /* ── Projects ── */
   .projects-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: var(--space-lg);
   }
 
-  /* ── Contact ── */
   .contact-grid {
     grid-template-columns: 1fr;
     gap: var(--space-3xl);
@@ -92,7 +85,6 @@
    ────────────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
 
-  /* ── Typography Scale Down ── */
   :root {
     --fs-5xl: 2.25rem;
     --fs-4xl: 2rem;
@@ -101,7 +93,6 @@
     --fs-xl:  1.25rem;
   }
 
-  /* ── Spacing Adjustments ── */
   .section {
     padding: var(--space-4xl) 0;
     min-height: auto;
@@ -114,12 +105,10 @@
     padding: 0 var(--space-lg);
   }
 
-  /* ── Navbar ── */
   .navbar {
     padding: 0 var(--space-lg);
   }
 
-  /* ── Hero ── */
   .hero-grid {
     gap: var(--space-2xl);
   }
@@ -157,17 +146,14 @@
     max-width: 100%;
   }
 
-  /* ── Scroll Hint ── */
   .scroll-hint {
     bottom: 1.5rem;
   }
 
-  /* ── Section Headers ── */
   .section-header {
     margin-bottom: var(--space-3xl);
   }
 
-  /* ── About ── */
   .about-avatar {
     width: 130px;
     height: 130px;
@@ -186,7 +172,6 @@
     gap: var(--space-sm);
   }
 
-  /* ── Skills — Single Column ── */
   .skills-categories {
     grid-template-columns: 1fr;
     gap: var(--space-md);
@@ -195,7 +180,6 @@
     padding: var(--space-lg);
   }
 
-  /* ── Projects — Single Column ── */
   .projects-grid {
     grid-template-columns: 1fr;
     gap: var(--space-lg);
@@ -206,7 +190,6 @@
     width: 100%;
   }
 
-  /* ── Contact ── */
   .contact-info h3 {
     font-size: var(--fs-xl);
     text-align: center;
@@ -218,14 +201,12 @@
     padding: var(--space-lg);
   }
 
-  /* ── Footer ── */
   .footer-inner {
     flex-direction: column;
     text-align: center;
     gap: var(--space-md);
   }
 
-  /* ── Decorative Orbs — Scale Down ── */
   .hero-section::before {
     width: 500px;
     height: 500px;
@@ -238,6 +219,18 @@
     width: 250px;
     height: 250px;
   }
+
+  /* Loader adjustments */
+  .loader-logo {
+    font-size: var(--fs-3xl);
+  }
+  .loader-boot {
+    max-width: 280px;
+    font-size: 0.65rem;
+  }
+  .loader-bar {
+    width: 200px;
+  }
 }
 
 
@@ -246,7 +239,6 @@
    ────────────────────────────────────────────────────────────────── */
 @media (max-width: 480px) {
 
-  /* ── Typography Scale Down ── */
   :root {
     --fs-5xl: 1.875rem;
     --fs-4xl: 1.625rem;
@@ -256,7 +248,6 @@
     --fs-lg:  1rem;
   }
 
-  /* ── Spacing ── */
   .section {
     padding: var(--space-3xl) 0;
   }
@@ -267,7 +258,6 @@
     padding: 0 var(--space-md);
   }
 
-  /* ── Navbar ── */
   .navbar {
     padding: 0 var(--space-md);
   }
@@ -275,7 +265,6 @@
     font-size: var(--fs-base);
   }
 
-  /* ── Hero ── */
   .hero-badge {
     font-size: var(--fs-xs);
     padding: 0.3rem 0.8rem 0.3rem 0.55rem;
@@ -305,7 +294,6 @@
     font-size: 0.65rem;
   }
 
-  /* ── Terminal ── */
   .terminal-body {
     padding: 0.85rem;
     font-size: var(--fs-xs);
@@ -318,7 +306,6 @@
     display: none;
   }
 
-  /* ── About ── */
   .about-card {
     padding: var(--space-lg);
     max-width: 280px;
@@ -350,7 +337,6 @@
     height: 20px;
   }
 
-  /* ── Skills ── */
   .skill-card {
     padding: var(--space-md);
   }
@@ -370,7 +356,6 @@
     padding: 0.3rem 0.7rem;
   }
 
-  /* ── Projects ── */
   .project-info {
     padding: var(--space-md);
   }
@@ -393,7 +378,6 @@
     height: 16px;
   }
 
-  /* ── Contact ── */
   .contact-links {
     gap: var(--space-sm);
   }
@@ -419,7 +403,6 @@
     font-size: var(--fs-sm);
   }
 
-  /* ── Section Headers ── */
   .section-header {
     margin-bottom: var(--space-2xl);
   }
@@ -430,12 +413,10 @@
     width: 40px;
   }
 
-  /* ── Mobile Menu ── */
   .mobile-link {
     font-size: var(--fs-xl);
   }
 
-  /* ── Footer ── */
   .footer {
     padding: var(--space-lg) 0;
   }
@@ -443,7 +424,6 @@
     font-size: var(--fs-xs);
   }
 
-  /* ── Decorative Orbs — Hide on Small Screens ── */
   .hero-section::before,
   .about-section::before,
   .about-section::after,
@@ -451,6 +431,25 @@
   .projects-section::before,
   .contact-section::before {
     display: none;
+  }
+
+  /* Loader adjustments */
+  .loader-logo {
+    font-size: var(--fs-2xl);
+  }
+  .loader-boot {
+    max-width: 240px;
+    font-size: 0.6rem;
+    min-height: 70px;
+  }
+  .loader-bar {
+    width: 180px;
+  }
+  .loader-percent {
+    font-size: var(--fs-xs);
+  }
+  .loader-text {
+    font-size: 0.6rem;
   }
 }
 
@@ -498,6 +497,29 @@
   .loader-logo {
     animation: none;
   }
+
+  .loader-logo::before,
+  .loader-logo::after {
+    animation: none;
+    display: none;
+  }
+
+  .loader-grid {
+    animation: none;
+  }
+
+  .loader-bar::before {
+    animation: none;
+  }
+
+  .loader-progress {
+    animation: none;
+  }
+
+  .skill-card::before {
+    animation: none;
+    display: none;
+  }
 }
 
 
@@ -527,9 +549,9 @@
 }
 
 
-/* ──────────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────��────
    HIGH-DPI / RETINA — Sharper Borders
-   ───────────────────────────────────────────────────────────────��── */
+   ────────────────────────────────────────────────────────────────── */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
 
   .glass-card,

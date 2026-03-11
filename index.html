@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Mayank — Full-Stack Developer crafting high-performance web experiences with cutting-edge technology." />
-  <meta name="theme-color" content="#0a0a1a" />
+  <meta name="theme-color" content="#030014" />
   <title>Mayank | Developer Portfolio</title>
 
   <!-- Fonts -->
@@ -24,7 +24,7 @@
       .anim { opacity: 1 !important; transform: none !important; }
       .loader { display: none !important; }
       .cursor-dot, .cursor-ring { display: none !important; }
-      #webgl-bg { background: linear-gradient(180deg, #050510 0%, #0a0a2e 100%) !important; }
+      #webgl-bg { background: linear-gradient(180deg, #030014 0%, #0a0a2e 100%) !important; }
     </style>
   </noscript>
 
@@ -44,12 +44,16 @@
 
   <!-- ======== PAGE LOADER ======== -->
   <div class="loader" id="loader">
+    <div class="loader-grid"></div>
+    <canvas class="loader-canvas" id="loaderCanvas"></canvas>
     <div class="loader-inner">
-      <div class="loader-logo">&lt;M/&gt;</div>
+      <div class="loader-logo" data-text="&lt;M/&gt;">&lt;M/&gt;</div>
+      <div class="loader-boot" id="loaderBoot"></div>
       <div class="loader-bar">
         <div class="loader-progress" id="loaderProgress"></div>
       </div>
-      <p class="loader-text">Initializing experience<span class="loader-dots">...</span></p>
+      <div class="loader-percent" id="loaderPercent">0%</div>
+      <p class="loader-text">INITIALIZING SYSTEM</p>
     </div>
   </div>
 
@@ -125,17 +129,17 @@
 
           <div class="hero-stats anim" data-anim="fade-up" data-delay="1.0">
             <div class="stat">
-              <span class="stat-num" data-target="50">0</span><span class="stat-plus">+</span>
+              <span class="stat-num" data-target="4">0</span><span class="stat-plus">+</span>
               <span class="stat-label">Projects Built</span>
             </div>
             <div class="stat-sep"></div>
             <div class="stat">
-              <span class="stat-num" data-target="30">0</span><span class="stat-plus">+</span>
+              <span class="stat-num" data-target="2">0</span><span class="stat-plus">+</span>
               <span class="stat-label">Happy Clients</span>
             </div>
             <div class="stat-sep"></div>
             <div class="stat">
-              <span class="stat-num" data-target="3">0</span><span class="stat-plus">+</span>
+              <span class="stat-num" data-target="5">0</span><span class="stat-plus">+</span>
               <span class="stat-label">Years Exp.</span>
             </div>
           </div>
@@ -610,6 +614,112 @@
   <script src="js/typewriter.js" defer></script>
   <script src="js/animations.js" defer></script>
   <script src="js/main.js" defer></script>
+
+  <!-- ======== STAT COUNTER — Standalone (always works) ======== -->
+  <script>
+  (function() {
+    var hasRun = false;
+
+    function countUp() {
+      if (hasRun) return;
+
+      var stats = document.querySelectorAll('.stat-num');
+      var allZero = true;
+
+      stats.forEach(function(el) {
+        var target = parseInt(el.getAttribute('data-target'), 10);
+        if (isNaN(target)) return;
+
+        var current = parseInt(el.textContent, 10);
+        if (current >= target) return;
+
+        allZero = false;
+      });
+
+      if (!allZero) return;
+
+      hasRun = true;
+
+      stats.forEach(function(el) {
+        var target = parseInt(el.getAttribute('data-target'), 10);
+        if (isNaN(target)) return;
+
+        var startVal = 0;
+        var duration = 2000;
+        var startTime = null;
+
+        function step(timestamp) {
+          if (!startTime) startTime = timestamp;
+          var progress = Math.min((timestamp - startTime) / duration, 1);
+          var eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.round(startVal + (target - startVal) * eased);
+          if (progress < 1) {
+            requestAnimationFrame(step);
+          } else {
+            el.textContent = target;
+          }
+        }
+
+        requestAnimationFrame(step);
+      });
+    }
+
+    // Watch for loader to disappear
+    function watchLoader() {
+      var loader = document.getElementById('loader');
+
+      if (!loader || loader.classList.contains('hidden') || loader.style.display === 'none' || !document.body.contains(loader)) {
+        setTimeout(countUp, 500);
+        return;
+      }
+
+      // Use MutationObserver to detect when loader gets hidden or removed
+      var observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+            if (loader.classList.contains('hidden')) {
+              observer.disconnect();
+              setTimeout(countUp, 800);
+            }
+          }
+          if (mutation.type === 'childList') {
+            mutation.removedNodes.forEach(function(node) {
+              if (node === loader) {
+                observer.disconnect();
+                setTimeout(countUp, 300);
+              }
+            });
+          }
+        });
+      });
+
+      observer.observe(loader, { attributes: true, attributeFilter: ['class'] });
+      observer.observe(loader.parentNode || document.body, { childList: true });
+
+      // Fallback timers in case observer doesn't catch it
+      setTimeout(countUp, 4000);
+      setTimeout(countUp, 6000);
+      setTimeout(countUp, 8000);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', watchLoader);
+    } else {
+      watchLoader();
+    }
+
+    // Nuclear fallback — force set values after 10s no matter what
+    setTimeout(function() {
+      var stats = document.querySelectorAll('.stat-num');
+      stats.forEach(function(el) {
+        var target = parseInt(el.getAttribute('data-target'), 10);
+        if (!isNaN(target) && parseInt(el.textContent, 10) === 0) {
+          el.textContent = target;
+        }
+      });
+    }, 10000);
+  })();
+  </script>
 
 </body>
 </html>

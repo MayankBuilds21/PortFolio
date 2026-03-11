@@ -1,12 +1,9 @@
 /* ================================================================
-   SECTIONS.CSS — Section-Specific Layouts & Grids
+   SECTIONS.CSS — Section-Specific Layouts & Grids (Gradient Theme)
    Midnight Tech Portfolio | Mayank
    ================================================================ */
 
-
-/* ──────────────────────────────────────────────────────────────────
-   HERO SECTION
-   ────────────────────────────────────────────────────────────────── */
+/* ── HERO SECTION ── */
 .hero-section {
   position: relative;
   display: flex;
@@ -14,29 +11,26 @@
   justify-content: center;
   overflow: hidden;
 }
-
-/* Subtle radial glow behind hero */
 .hero-section::before {
   content: '';
   position: absolute;
   top: -20%;
   left: 50%;
   transform: translateX(-50%);
-  width: 900px;
-  height: 900px;
+  width: 1000px;
+  height: 1000px;
   border-radius: 50%;
   background: radial-gradient(circle,
-    rgba(124, 58, 237, 0.1) 0%,
-    rgba(124, 58, 237, 0.03) 40%,
+    rgba(139, 92, 246, 0.12) 0%,
+    rgba(6, 182, 212, 0.04) 30%,
+    rgba(236, 72, 153, 0.02) 50%,
     transparent 70%);
   pointer-events: none;
   z-index: 0;
+  animation: floatOrb1 12s ease-in-out infinite;
 }
 
-.hero-container {
-  position: relative;
-  z-index: 1;
-}
+.hero-container { position: relative; z-index: 1; }
 
 .hero-grid {
   display: grid;
@@ -48,63 +42,44 @@
   margin: 0 auto;
   padding: 0 var(--space-xl);
 }
-
-.hero-left {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.hero-right {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  perspective: 1000px;
-}
-
-.hero-card {
-  width: 100%;
-  max-width: 440px;
-  animation: float 6s ease-in-out infinite;
-}
+.hero-left { display: flex; flex-direction: column; align-items: flex-start; }
+.hero-right { display: flex; align-items: center; justify-content: center; perspective: 1000px; }
+.hero-card { width: 100%; max-width: 440px; animation: float 6s ease-in-out infinite; }
 
 
-/* ──────────────────────────────────────────────────────────────────
-   ABOUT SECTION
-   ────────────────────────────────────────────────────────────────── */
-.about-section {
-  position: relative;
-  overflow: hidden;
-}
+/* ── ABOUT SECTION ── */
+.about-section { position: relative; overflow: hidden; }
 
-/* Decorative purple accent orb */
+/* Multiple gradient orbs */
 .about-section::before {
   content: '';
   position: absolute;
-  top: 15%;
+  top: 10%;
   right: -10%;
   width: 500px;
   height: 500px;
   border-radius: 50%;
   background: radial-gradient(circle,
-    rgba(124, 58, 237, 0.06) 0%,
+    rgba(139, 92, 246, 0.08) 0%,
+    rgba(6, 182, 212, 0.03) 40%,
     transparent 70%);
   pointer-events: none;
+  animation: floatOrb1 15s ease-in-out infinite;
 }
-
-/* Decorative cyan accent orb */
 .about-section::after {
   content: '';
   position: absolute;
-  bottom: 10%;
+  bottom: 5%;
   left: -8%;
-  width: 400px;
-  height: 400px;
+  width: 450px;
+  height: 450px;
   border-radius: 50%;
   background: radial-gradient(circle,
-    rgba(6, 182, 212, 0.05) 0%,
+    rgba(236, 72, 153, 0.06) 0%,
+    rgba(6, 182, 212, 0.03) 40%,
     transparent 70%);
   pointer-events: none;
+  animation: floatOrb2 18s ease-in-out infinite;
 }
 
 .about-grid {
@@ -114,12 +89,7 @@
   align-items: start;
 }
 
-/* ── Avatar Card ── */
-.about-visual {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+.about-visual { display: flex; align-items: center; justify-content: center; }
 
 .about-card {
   padding: var(--space-2xl);
@@ -132,29 +102,25 @@
   max-width: 360px;
 }
 
-.about-avatar {
-  position: relative;
-  width: 160px;
-  height: 160px;
-}
-
+.about-avatar { position: relative; width: 160px; height: 160px; }
 .avatar-ring {
   width: 100%;
   height: 100%;
   border-radius: 50%;
   padding: 4px;
-  background: var(--gradient-primary);
+  background: var(--gradient-aurora);
+  background-size: 200% 200%;
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: glow-pulse 3s ease-in-out infinite;
+  animation: glow-pulse 3s ease-in-out infinite, gradientShift 4s ease infinite;
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.3),
+              0 0 60px rgba(6, 182, 212, 0.15);
 }
-
 .avatar-inner {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background: var(--bg-secondary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -164,22 +130,20 @@
   background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
 }
 
-/* Orbiting Dots */
 .avatar-orbit {
   position: absolute;
   inset: -12px;
   animation: rotate 10s linear infinite;
 }
-
 .orbit-dot {
   position: absolute;
   width: 10px;
   height: 10px;
   border-radius: 50%;
   background: var(--clr);
-  box-shadow: 0 0 12px var(--clr);
+  box-shadow: 0 0 12px var(--clr), 0 0 24px var(--clr);
 }
-.orbit-dot:nth-child(1) { top: 0;   left: 50%; transform: translateX(-50%); }
+.orbit-dot:nth-child(1) { top: 0; left: 50%; transform: translateX(-50%); }
 .orbit-dot:nth-child(2) { bottom: 8%; right: 2%; }
 .orbit-dot:nth-child(3) { bottom: 8%; left: 2%; }
 
@@ -190,33 +154,24 @@
   gap: var(--space-sm);
 }
 
-/* ── About Text ── */
-.about-text {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-lg);
-}
-
+.about-text { display: flex; flex-direction: column; gap: var(--space-lg); }
 .about-text h3 {
   font-size: var(--fs-2xl);
   font-weight: var(--fw-bold);
   line-height: var(--lh-snug);
 }
-
 .about-text p {
   font-size: var(--fs-base);
   color: var(--text-secondary);
   line-height: var(--lh-relaxed);
 }
 
-/* ── Highlight Cards ── */
 .about-highlights {
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
   margin-top: var(--space-md);
 }
-
 .highlight {
   display: flex;
   align-items: center;
@@ -224,9 +179,7 @@
   padding: var(--space-md) var(--space-lg);
   transition: transform var(--duration-normal) var(--ease-spring);
 }
-.highlight:hover {
-  transform: translateX(6px);
-}
+.highlight:hover { transform: translateX(8px); }
 
 .highlight-icon {
   width: 48px;
@@ -237,78 +190,42 @@
   border-radius: var(--radius-lg);
   flex-shrink: 0;
 }
-.highlight-icon.purple {
-  background: rgba(124, 58, 237, 0.12);
-  color: var(--purple-400);
-}
-.highlight-icon.cyan {
-  background: rgba(6, 182, 212, 0.12);
-  color: var(--cyan-400);
-}
-.highlight-icon.pink {
-  background: rgba(236, 72, 153, 0.12);
-  color: var(--pink-400);
-}
+.highlight-icon.purple { background: rgba(139, 92, 246, 0.12); color: var(--purple-400); }
+.highlight-icon.cyan   { background: rgba(6, 182, 212, 0.12); color: var(--cyan-400); }
+.highlight-icon.pink   { background: rgba(236, 72, 153, 0.12); color: var(--pink-400); }
 
-.highlight div:last-child {
-  display: flex;
-  flex-direction: column;
-}
-.highlight strong {
-  font-size: var(--fs-sm);
-  font-weight: var(--fw-semibold);
-  color: var(--text-white);
-}
-.highlight span {
-  font-size: var(--fs-xs);
-  color: var(--text-muted);
-}
+.highlight div:last-child { display: flex; flex-direction: column; }
+.highlight strong { font-size: var(--fs-sm); font-weight: var(--fw-semibold); color: var(--text-white); }
+.highlight span { font-size: var(--fs-xs); color: var(--text-muted); }
 
 
-/* ──────────────────────────────────────────────────────────────────
-   SKILLS SECTION
-   ────────────────────────────────────────────────────────────────── */
-.skills-section {
-  position: relative;
-  overflow: hidden;
-}
-
-/* Background decoration */
+/* ── SKILLS SECTION ── */
+.skills-section { position: relative; overflow: hidden; }
 .skills-section::before {
   content: '';
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 700px;
-  height: 700px;
+  width: 800px;
+  height: 800px;
   border-radius: 50%;
   background: radial-gradient(circle,
-    rgba(124, 58, 237, 0.05) 0%,
+    rgba(139, 92, 246, 0.06) 0%,
+    rgba(6, 182, 212, 0.03) 30%,
     transparent 60%);
   pointer-events: none;
 }
-
 .skills-categories {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--space-xl);
 }
-
-.skill-cat {
-  /* Container for animation wrapper */
-}
+.skill-cat { }
 
 
-/* ─────────────────────────────────────────────────���────────────────
-   PROJECTS SECTION
-   ────────────────────────────────────────────────────────────────── */
-.projects-section {
-  position: relative;
-  overflow: hidden;
-}
-
-/* Decorative orb */
+/* ── PROJECTS SECTION ── */
+.projects-section { position: relative; overflow: hidden; }
 .projects-section::before {
   content: '';
   position: absolute;
@@ -318,11 +235,12 @@
   height: 600px;
   border-radius: 50%;
   background: radial-gradient(circle,
-    rgba(236, 72, 153, 0.05) 0%,
+    rgba(236, 72, 153, 0.06) 0%,
+    rgba(139, 92, 246, 0.03) 30%,
     transparent 65%);
   pointer-events: none;
+  animation: floatOrb2 20s ease-in-out infinite;
 }
-
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -330,15 +248,8 @@
 }
 
 
-/* ──────────────────────────────────────────────────────────────────
-   CONTACT SECTION
-   ────────────────────────────────────────────────────────────────── */
-.contact-section {
-  position: relative;
-  overflow: hidden;
-}
-
-/* Decorative glow */
+/* ── CONTACT SECTION ── */
+.contact-section { position: relative; overflow: hidden; }
 .contact-section::before {
   content: '';
   position: absolute;
@@ -348,11 +259,12 @@
   height: 500px;
   border-radius: 50%;
   background: radial-gradient(circle,
-    rgba(124, 58, 237, 0.06) 0%,
+    rgba(139, 92, 246, 0.07) 0%,
+    rgba(6, 182, 212, 0.03) 30%,
     transparent 70%);
   pointer-events: none;
+  animation: floatOrb1 16s ease-in-out infinite;
 }
-
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -360,25 +272,9 @@
   align-items: start;
 }
 
-/* ── Contact Info Side ── */
-.contact-info {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-lg);
-}
-
-.contact-info h3 {
-  font-size: var(--fs-2xl);
-  font-weight: var(--fw-bold);
-  line-height: var(--lh-snug);
-}
-
-.contact-info > p {
-  font-size: var(--fs-base);
-  color: var(--text-secondary);
-  line-height: var(--lh-relaxed);
-}
-
+.contact-info { display: flex; flex-direction: column; gap: var(--space-lg); }
+.contact-info h3 { font-size: var(--fs-2xl); font-weight: var(--fw-bold); line-height: var(--lh-snug); }
+.contact-info > p { font-size: var(--fs-base); color: var(--text-secondary); line-height: var(--lh-relaxed); }
 .contact-links {
   display: flex;
   flex-direction: column;
@@ -386,48 +282,41 @@
   margin-top: var(--space-md);
 }
 
-/* ── Contact Form Side ── */
-.contact-form-wrap {
-  width: 100%;
-}
+.contact-form-wrap { width: 100%; }
 
 
-/* ──────────────────────────────────────────────────────────────────
-   SECTION DIVIDER ACCENTS
-   Subtle horizontal glow lines between sections
-   ────────────────────────────────────────────────────────────────── */
-.about-section::after,
-.skills-section::after,
-.projects-section::after {
-  /* Overriding only the about after — adding dividers for skills/projects */
-}
-
+/* ── SECTION DIVIDERS ── */
 .skills-section::after {
   content: '';
   position: absolute;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 200px;
+  width: 300px;
   height: 1px;
   background: linear-gradient(90deg,
     transparent,
-    rgba(124, 58, 237, 0.3),
+    var(--purple-600),
+    var(--cyan-400),
+    var(--pink-500),
     transparent);
+  opacity: 0.3;
   pointer-events: none;
 }
-
 .projects-section::after {
   content: '';
   position: absolute;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 200px;
+  width: 300px;
   height: 1px;
   background: linear-gradient(90deg,
     transparent,
-    rgba(6, 182, 212, 0.3),
+    var(--cyan-400),
+    var(--pink-500),
+    var(--purple-600),
     transparent);
+  opacity: 0.3;
   pointer-events: none;
 }
