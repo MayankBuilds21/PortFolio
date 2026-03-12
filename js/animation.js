@@ -73,7 +73,7 @@
 
   // ────────────────────────────────────────────────────────
   //  SHOW ALL CONTENT (fallback)
-  // ───────────────────────────────────���────────────────────
+  // ────────────────────────────────────────────────────────
 
   function showAllContent() {
     var anims = document.querySelectorAll('.anim');
@@ -86,7 +86,7 @@
 
   // ────────────────────────────────────────────────────────
   //  ELEMENT REVEAL ANIMATIONS
-  // ────────────────────────────────────────────────────────
+  // ─────────────────────────���──────────────────────────────
 
   function initReveals() {
     var animElements = document.querySelectorAll('.anim');
@@ -147,28 +147,45 @@
   }
 
   // ────────────────────────────────────────────────────────
-  //  HERO STAT COUNTERS (animate immediately after reveal)
-  // ────────────────────────────────────────────────────────
+  //  HERO STAT COUNTERS
+  //  Uses a timeline tied to the parent .hero-stats reveal
+  //  so counters start exactly when stats become visible.
+  // ─���──────────────────────────────────────────────────────
 
   function initHeroStatCounters() {
     var heroSection = document.getElementById('home');
     if (!heroSection) return;
 
+    var statsContainer = heroSection.querySelector('.hero-stats');
     var statNums = heroSection.querySelectorAll('.stat-num');
+
+    if (!statsContainer || statNums.length === 0) return;
+
+    // The .hero-stats has data-delay="1.0" and fades in via initReveals().
+    // The reveal animation takes 0.9s with a 1.0s delay = visible at ~1.9s.
+    // We start counting at 1.5s so the numbers animate AS the stats fade in,
+    // giving a smooth synchronized appearance.
+    var counterDelay = 1.5;
 
     statNums.forEach(function (el) {
       var target = parseInt(el.getAttribute('data-target'), 10);
-      if (isNaN(target)) return;
+      if (isNaN(target) || target <= 0) return;
 
-      // Animate after hero content has faded in (1.2s delay)
+      // Ensure element starts at 0
+      el.textContent = '0';
+
       var obj = { val: 0 };
       gsap.to(obj, {
         val: target,
         duration: 2,
-        delay: 1.2,
+        delay: counterDelay,
         ease: 'power2.out',
         onUpdate: function () {
           el.textContent = Math.round(obj.val);
+        },
+        onComplete: function () {
+          // Guarantee final value is exact
+          el.textContent = target;
         },
       });
     });
@@ -200,6 +217,9 @@
             ease: 'power2.out',
             onUpdate: function () {
               el.textContent = Math.round(obj.val);
+            },
+            onComplete: function () {
+              el.textContent = target;
             },
           });
         },
